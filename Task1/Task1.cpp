@@ -10,7 +10,6 @@ using std::cin;
 using std::cout;
 using std::vector;
 
-
 vector<int> generateArray(int n, int minV, int maxV) {
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -21,14 +20,12 @@ vector<int> generateArray(int n, int minV, int maxV) {
     return a;
 }
 
-
 void printArray(const vector<int>& a, int firstCount = 30) {
     int limit = (a.size() < (size_t)firstCount) ? (int)a.size() : firstCount;
     for (int i = 0; i < limit; i++) cout << a[i] << " ";
     if ((int)a.size() > firstCount) cout << "...";
     cout << "\n";
 }
-
 
 void insertionSort(vector<int>& a) {
     for (int i = 1; i < (int)a.size(); i++) {
@@ -41,7 +38,6 @@ void insertionSort(vector<int>& a) {
         a[j + 1] = key;
     }
 }
-
 
 void quickSortRec(vector<int>& a, int l, int r) {
     int i = l, j = r;
@@ -63,7 +59,6 @@ void quickSort(vector<int>& a) {
     if (!a.empty()) quickSortRec(a, 0, (int)a.size() - 1);
 }
 
-
 int binarySearch(const vector<int>& a, int key) {
     int l = 0, r = (int)a.size() - 1;
     while (l <= r) {
@@ -75,7 +70,6 @@ int binarySearch(const vector<int>& a, int key) {
     return -1;
 }
 
-
 long long measureSortUs(void (*sortFunc)(vector<int>&), const vector<int>& base) {
     vector<int> tmp = base;
     auto start = std::chrono::high_resolution_clock::now();
@@ -83,7 +77,6 @@ long long measureSortUs(void (*sortFunc)(vector<int>&), const vector<int>& base)
     auto end = std::chrono::high_resolution_clock::now();
     return std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
 }
-
 
 long long measureTwoSortsSyncUs(const vector<int>& base) {
     auto a1 = base;
@@ -96,7 +89,6 @@ long long measureTwoSortsSyncUs(const vector<int>& base) {
 
     return std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
 }
-
 
 long long measureTwoSortsAsyncUs(const vector<int>& base) {
     auto start = std::chrono::high_resolution_clock::now();
